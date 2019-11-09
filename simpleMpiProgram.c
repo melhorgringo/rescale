@@ -14,7 +14,7 @@ int main(int argc, char **argv)
 
   if (rank==0) {
     n1 = 1;
-    n2 = n2;
+    n2 = num2;
   }
   else {
     n1 = num2 + 1;
@@ -26,6 +26,7 @@ int main(int argc, char **argv)
   for (int i=n1;i<=n2;i++) {
     fact = fact*i;
   }
+  printf("rank %d fact %d\n",rank,fact);
 
   if (rank==1) {
     MPI_Send(&fact, 1, MPI_INT, 0, 0, MPI_COMM_WORLD);
@@ -33,7 +34,7 @@ int main(int argc, char **argv)
   else {
     MPI_Recv(&prod2, 1, MPI_INT, 1, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
     fact = fact*prod2;
-    printf("%d",fact);
+    printf("%d %d",fact, prod2);
   }
 
   MPI_Finalize();

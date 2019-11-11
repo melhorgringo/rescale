@@ -6,7 +6,7 @@ int main(int argc, char **argv)
 {
   int rank;
   int ierr;
-  int numprocs;
+  int num_procs;
   int num = atoi(argv[1]);
   int n1, n2, fact, prod;
 
